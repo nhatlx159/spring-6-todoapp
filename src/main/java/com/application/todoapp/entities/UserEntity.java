@@ -21,6 +21,7 @@ import java.util.UUID;
 public class UserEntity {
     @Id
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Version
@@ -45,6 +46,7 @@ public class UserEntity {
     private LocalDateTime isDelete;
 
     @CreationTimestamp
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp

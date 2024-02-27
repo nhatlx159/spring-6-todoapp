@@ -19,6 +19,7 @@ import java.util.UUID;
 public class TaskEntity {
     @Id
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Version
