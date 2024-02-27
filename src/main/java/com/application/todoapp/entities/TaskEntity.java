@@ -42,6 +42,12 @@ public class TaskEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @ToString.Exclude
+    private UserEntity user;
 }

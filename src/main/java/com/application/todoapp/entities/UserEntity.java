@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -31,6 +32,10 @@ public class UserEntity {
 
     @NotNull
     @NotBlank
+    private String fullName;
+
+    @NotNull
+    @NotBlank
     private String password;
 
     @NotNull
@@ -44,4 +49,13 @@ public class UserEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<TaskEntity> tasks;
+
+    @ManyToOne
+    @JoinColumn(name = "roleId")
+    @ToString.Exclude
+    private RoleEntity role;
 }
