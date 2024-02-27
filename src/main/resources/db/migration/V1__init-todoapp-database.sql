@@ -29,7 +29,7 @@ CREATE TABLE task (
                       taskName VARCHAR(255) NOT NULL,
                       taskDescription VARCHAR(255) NOT NULL,
                       atTime TIMESTAMP,
-                      userId INT,
+                      userId VARCHAR(36) NOT NULL,
                       completed BOOLEAN,
                       createdAt TIMESTAMP,
                       updatedAt TIMESTAMP,
