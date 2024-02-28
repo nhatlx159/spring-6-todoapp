@@ -43,4 +43,6 @@ public class UserDTO {
     private List<TaskEntity> tasks;
 
     private RoleEntity role;
+
+    private Integer roleId;
 }

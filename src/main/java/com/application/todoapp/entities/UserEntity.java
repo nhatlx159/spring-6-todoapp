@@ -5,7 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.UUID;
 @Table(name = "user")
 public class UserEntity {
     @Id
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -46,7 +50,7 @@ public class UserEntity {
     private LocalDateTime isDelete;
 
     @CreationTimestamp
-    @Column(name = "created_at")
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
