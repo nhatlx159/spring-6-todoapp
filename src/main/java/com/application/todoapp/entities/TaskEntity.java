@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @Table(name = "task")
 public class TaskEntity {
     @Id
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -34,11 +37,8 @@ public class TaskEntity {
     private String taskDescription;
 
     @NotNull
-    @NotBlank
     private LocalDateTime atTime;
 
-    @NotNull
-    @NotBlank
     private boolean completed;
 
     @CreationTimestamp

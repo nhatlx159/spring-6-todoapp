@@ -56,7 +56,7 @@ public class UserEntity {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private List<TaskEntity> tasks;
 

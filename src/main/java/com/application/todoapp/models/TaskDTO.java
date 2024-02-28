@@ -29,11 +29,8 @@ public class TaskDTO {
     private String taskDescription;
 
     @NotNull
-    @NotBlank
     private LocalDateTime atTime;
 
-    @NotNull
-    @NotBlank
     private boolean completed;
 
     private LocalDateTime createdAt;
@@ -41,4 +38,7 @@ public class TaskDTO {
     private LocalDateTime updatedAt;
 
     private UserEntity user;
+
+    @NotNull
+    private UUID userId;
 }
