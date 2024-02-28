@@ -35,8 +35,4 @@ public class RoleEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private List<UserEntity> users;
 }

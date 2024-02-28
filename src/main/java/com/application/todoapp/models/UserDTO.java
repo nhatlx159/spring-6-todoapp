@@ -2,6 +2,7 @@ package com.application.todoapp.models;
 
 import com.application.todoapp.entities.RoleEntity;
 import com.application.todoapp.entities.TaskEntity;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

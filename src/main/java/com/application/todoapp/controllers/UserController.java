@@ -25,7 +25,7 @@ public class UserController {
 
     private final String USER_ID = USER_PATH + "/{userId}";
 
-    @GetMapping
+    @GetMapping(USER_PATH)
     public List<UserDTO> getAllUsers(){
         return userService.getAllUser();
     }
@@ -37,9 +37,7 @@ public class UserController {
 
     @PostMapping(USER_PATH)
     public ResponseEntity addNewUser(@Validated @RequestBody UserDTO userDTO){
-
         userService.createUser(userDTO);
-
         HttpHeaders httpHeaders = new HttpHeaders();
         return new ResponseEntity(httpHeaders, HttpStatus.CREATED);
     }

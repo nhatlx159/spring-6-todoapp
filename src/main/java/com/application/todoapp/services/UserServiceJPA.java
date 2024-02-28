@@ -34,6 +34,9 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
+        if(userDTO.getRoleId() == null){
+            userDTO.setRoleId(1);
+        }
         roleRepository.findById(userDTO.getRoleId()).ifPresentOrElse(userDTO::setRole,
                 ()->{
                     try {
@@ -47,7 +50,8 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public Optional<UserDTO> getUserById(UUID userId) {
-
-        return Optional.empty();
+        UserDTO existingUser = userMapper.userEntityToUserDto(userRepository.findById(userId).orElse(null));
+        existingUser.setRoleId(existingUser.getRole().getId());
+        return Optional.of(existingUser);
     }
 }
