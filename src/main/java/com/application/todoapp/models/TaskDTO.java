@@ -39,6 +39,5 @@ public class TaskDTO {
 
     private UserEntity user;
 
-    @NotNull
     private UUID userId;
 }

@@ -1,5 +1,6 @@
 package com.application.todoapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
 @Builder
 @Getter
 @Setter
@@ -50,5 +52,6 @@ public class TaskEntity {
     @ManyToOne
     @JoinColumn(name = "userId")
     @ToString.Exclude
+    @JsonBackReference
     private UserEntity user;
 }

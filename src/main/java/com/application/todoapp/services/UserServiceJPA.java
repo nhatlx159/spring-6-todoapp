@@ -27,7 +27,7 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public List<UserDTO> getAllUser() {
-         return userRepository.findAll()
+        return userRepository.findAll()
                 .stream()
                 .map(userMapper::userEntityToUserDto)
                 .collect(Collectors.toList());
@@ -35,11 +35,11 @@ public class UserServiceJPA implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        if(userDTO.getRoleId() == null){
+        if (userDTO.getRoleId() == null) {
             userDTO.setRoleId(1);
         }
         roleRepository.findById(userDTO.getRoleId()).ifPresentOrElse(userDTO::setRole,
-                ()->{
+                () -> {
                     try {
                         throw new ChangeSetPersister.NotFoundException();
                     } catch (ChangeSetPersister.NotFoundException e) {

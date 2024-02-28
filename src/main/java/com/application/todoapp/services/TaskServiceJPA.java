@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
+
 @Transactional
 @Service
 @Slf4j
@@ -21,6 +22,7 @@ public class TaskServiceJPA implements TaskService {
     private final TaskMapper taskMapper;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
     @Override
     public Optional<TaskDTO> getTaskById(UUID id) {
         TaskDTO existingTask = taskMapper.taskEntityToTaskDto(taskRepository.findById(id).orElse(null));
@@ -29,7 +31,7 @@ public class TaskServiceJPA implements TaskService {
 
     @Override
     public TaskDTO createNewTask(TaskDTO taskDTO) {
-//        taskDTO.setUser(userRepository.findById(taskDTO.getUserId()).orElse(null));
+        taskDTO.setUser(userRepository.findById(taskDTO.getUserId()).orElse(null));
         return taskMapper.taskEntityToTaskDto(taskRepository.save(taskMapper.taskDtoToTaskEntity(taskDTO)));
     }
 }

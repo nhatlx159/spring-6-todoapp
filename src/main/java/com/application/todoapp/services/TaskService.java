@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public interface TaskService {
     Optional<TaskDTO> getTaskById(UUID id);
+
     TaskDTO createNewTask(TaskDTO taskDTO);
 }

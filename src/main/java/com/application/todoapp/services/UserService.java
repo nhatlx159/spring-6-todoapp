@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public interface UserService {
     List<UserDTO> getAllUser();
+
     UserDTO createUser(UserDTO userDTO);
+
     Optional<UserDTO> getUserById(UUID userId);
 }

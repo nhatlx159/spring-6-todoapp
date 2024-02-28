@@ -25,13 +25,13 @@ public class TaskController {
 
     @PostMapping(TASK_PATH)
     public ResponseEntity addNewTask(@Validated @RequestBody TaskDTO taskDTO) {
-        taskDTO.setCompleted(false);
         taskService.createNewTask(taskDTO);
         HttpHeaders http = new HttpHeaders();
         return new ResponseEntity<>(http, HttpStatus.CREATED);
     }
+
     @GetMapping(TASK_ID)
-    public Optional<TaskDTO> getTaskById(@PathVariable UUID taskId){
+    public Optional<TaskDTO> getTaskById(@PathVariable UUID taskId) {
         return taskService.getTaskById(taskId);
     }
 }

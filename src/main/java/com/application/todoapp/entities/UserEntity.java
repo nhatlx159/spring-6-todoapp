@@ -1,5 +1,6 @@
 package com.application.todoapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -58,6 +59,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
+    @JsonManagedReference
     private List<TaskEntity> tasks;
 
     @ManyToOne
