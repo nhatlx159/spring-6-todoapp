@@ -1,5 +1,6 @@
 package com.application.todoapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,4 +36,10 @@ public class RoleEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+//    @OneToMany(mappedBy = "role")
+//    @ToString.Exclude
+//    @EqualsAndHashCode.Exclude
+//    @JsonManagedReference
+//    private List<UserEntity> users;
 }

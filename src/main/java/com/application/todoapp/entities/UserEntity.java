@@ -1,5 +1,6 @@
 package com.application.todoapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -65,5 +66,6 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "roleId")
     @ToString.Exclude
+    @JsonBackReference
     private RoleEntity role;
 }

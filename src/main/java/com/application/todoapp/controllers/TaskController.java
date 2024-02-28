@@ -32,6 +32,9 @@ public class TaskController {
 
     @GetMapping(TASK_ID)
     public Optional<TaskDTO> getTaskById(@PathVariable UUID taskId) {
+        if(taskService.getTaskById(taskId).isEmpty()){
+            throw new NotFoundException();
+        }
         return taskService.getTaskById(taskId);
     }
 }
