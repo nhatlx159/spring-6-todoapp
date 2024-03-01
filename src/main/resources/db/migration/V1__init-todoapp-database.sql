@@ -40,3 +40,8 @@ CREATE TABLE task
     FOREIGN KEY (userId) REFERENCES `user` (id)
 );
 
+INSERT INTO todoapp.role (version, roleName, roleDescription, createdAt, updatedAt)
+VALUES (0, "user", "Read only", "2024-02-27 17:46:43", "2024-02-27 17:46:43");
+INSERT INTO todoapp.role (version, roleName, roleDescription, createdAt, updatedAt)
+VALUES (0, "admin", "Governor", "2024-02-27 17:46:43", "2024-02-27 17:46:43");
+
