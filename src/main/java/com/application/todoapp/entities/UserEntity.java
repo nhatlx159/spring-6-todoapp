@@ -50,7 +50,6 @@ public class UserEntity {
     private String phone;
 
     @NotNull
-    @NotBlank
     private byte[] salt;
 
     private LocalDateTime isDelete;

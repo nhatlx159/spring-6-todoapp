@@ -1,5 +1,6 @@
 package com.application.todoapp.controllers;
 
+import com.application.todoapp.models.ResponseUserDTO;
 import com.application.todoapp.models.UserDTO;
 import com.application.todoapp.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping(USER_ID)
-    public Optional<UserDTO> getUserById(@PathVariable UUID userId) {
+    public Optional<ResponseUserDTO> getUserById(@PathVariable UUID userId) {
         return userService.getUserById(userId);
     }
 
@@ -46,8 +47,8 @@ public class UserController {
     }
 
     @PostMapping(USER_LOGIN)
-    public ResponseEntity<Optional<UserDTO>> userLogin(@Validated @RequestBody UserDTO userDTO) {
-        Optional<UserDTO> result = userService.loginUser(userDTO);
+    public ResponseEntity<Optional<ResponseUserDTO>> userLogin(@Validated @RequestBody UserDTO userDTO) {
+        Optional<ResponseUserDTO> result = userService.loginUser(userDTO);
         if (result.isEmpty()) {
             return ResponseEntity.badRequest().body(result);
         }

@@ -1,5 +1,6 @@
 package com.application.todoapp.services;
 
+import com.application.todoapp.models.ResponseUserDTO;
 import com.application.todoapp.models.UserDTO;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserService {
 
     UserDTO createUser(UserDTO userDTO);
 
-    Optional<UserDTO> getUserById(UUID userId);
+    Optional<ResponseUserDTO> getUserById(UUID userId);
 
-    Optional<UserDTO> loginUser(UserDTO userDTO);
+    Optional<ResponseUserDTO> loginUser(UserDTO userDTO);
 }
