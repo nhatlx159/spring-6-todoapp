@@ -44,10 +44,11 @@ public class UserController {
         UserDTO user = userService.createUser(userDTO);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
     @PostMapping(USER_LOGIN)
-    public ResponseEntity<Optional<UserDTO>> userLogin(@Validated @RequestBody UserDTO userDTO){
+    public ResponseEntity<Optional<UserDTO>> userLogin(@Validated @RequestBody UserDTO userDTO) {
         Optional<UserDTO> result = userService.loginUser(userDTO);
-        if (result.isEmpty()){
+        if (result.isEmpty()) {
             return ResponseEntity.badRequest().body(result);
         }
         return ResponseEntity.ok(userService.loginUser(userDTO));

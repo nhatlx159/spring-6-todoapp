@@ -18,19 +18,19 @@ public class UserDTO {
     private UUID id;
 
     private Integer version;
-//
+    //
 //    @NotNull
 //    @NotBlank
     private String email;
-//
+    //
 //    @NotNull
 //    @NotBlank
     private String fullName;
-//
+    //
 //    @NotNull
 //    @NotBlank
     private String password;
-//
+    //
 //    @NotNull
 //    @NotBlank
     private String phone;

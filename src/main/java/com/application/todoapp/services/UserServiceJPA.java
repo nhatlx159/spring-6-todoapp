@@ -7,7 +7,6 @@ import com.application.todoapp.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
@@ -64,13 +63,15 @@ public class UserServiceJPA implements UserService {
 
         return userMapper.userEntityToUserDto(userRepository.save(userMapper.userDtoToUserEntity(userDTO)));
     }
+
     private byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return salt;
     }
-    private String hashPassword(String password, byte[] salt){
+
+    private String hashPassword(String password, byte[] salt) {
         try {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -81,7 +82,8 @@ public class UserServiceJPA implements UserService {
             return null;
         }
     }
-    private boolean validatePassword(String inputPassword, byte[] salt, String hashedPassword){
+
+    private boolean validatePassword(String inputPassword, byte[] salt, String hashedPassword) {
         String newlyHashedPassword = hashPassword(inputPassword, salt);
         return hashedPassword.equals(newlyHashedPassword);
     }
@@ -96,10 +98,10 @@ public class UserServiceJPA implements UserService {
     @Override
     public Optional<UserDTO> loginUser(UserDTO userDTO) {
         UserDTO existingUser = userMapper.userEntityToUserDto(userRepository.findByEmail(userDTO.getEmail()).orElse(null));
-        if (existingUser == null){
+        if (existingUser == null) {
             return Optional.empty();
         }
-        if (validatePassword(userDTO.getPassword(), existingUser.getSalt(), existingUser.getPassword())){
+        if (validatePassword(userDTO.getPassword(), existingUser.getSalt(), existingUser.getPassword())) {
             return Optional.of(existingUser);
         } else {
             return Optional.empty();
