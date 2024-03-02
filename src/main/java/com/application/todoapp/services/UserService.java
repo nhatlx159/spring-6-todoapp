@@ -12,4 +12,6 @@ public interface UserService {
     UserDTO createUser(UserDTO userDTO);
 
     Optional<UserDTO> getUserById(UUID userId);
+
+    Optional<UserDTO> loginUser(UserDTO userDTO);
 }

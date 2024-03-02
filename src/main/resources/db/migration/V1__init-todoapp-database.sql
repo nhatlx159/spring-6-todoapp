@@ -21,6 +21,7 @@ CREATE TABLE `user`
     roleId     INT,
     createdAt  TIMESTAMP,
     updatedAt  TIMESTAMP,
+    salt VARBINARY(16),
     PRIMARY KEY (id),
     FOREIGN KEY (roleId) REFERENCES role (id)
 );

@@ -18,21 +18,21 @@ public class UserDTO {
     private UUID id;
 
     private Integer version;
-
-    @NotNull
-    @NotBlank
+//
+//    @NotNull
+//    @NotBlank
     private String email;
-
-    @NotNull
-    @NotBlank
+//
+//    @NotNull
+//    @NotBlank
     private String fullName;
-
-    @NotNull
-    @NotBlank
+//
+//    @NotNull
+//    @NotBlank
     private String password;
-
-    @NotNull
-    @NotBlank
+//
+//    @NotNull
+//    @NotBlank
     private String phone;
 
     private LocalDateTime isDelete;
@@ -46,4 +46,6 @@ public class UserDTO {
     private RoleEntity role;
 
     private Integer roleId;
+
+    private byte[] salt;
 }

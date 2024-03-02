@@ -49,6 +49,10 @@ public class UserEntity {
     @NotBlank
     private String phone;
 
+    @NotNull
+    @NotBlank
+    private byte[] salt;
+
     private LocalDateTime isDelete;
 
     @CreationTimestamp

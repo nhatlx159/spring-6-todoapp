@@ -7,6 +7,7 @@ import com.application.todoapp.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class UserServiceJPA implements UserService {
         // Generate hashed password
         String hashedPassword = hashPassword(password, salt);
         userDTO.setPassword(hashedPassword);
+        userDTO.setSalt(salt);
         // Validate a password
 //        boolean isValid = validatePassword(password, salt, hashedPassword);
 //        if(!isValid){
@@ -89,5 +91,18 @@ public class UserServiceJPA implements UserService {
         UserDTO existingUser = userMapper.userEntityToUserDto(userRepository.findById(userId).orElse(null));
         existingUser.setRoleId(existingUser.getRole().getId());
         return Optional.of(existingUser);
+    }
+
+    @Override
+    public Optional<UserDTO> loginUser(UserDTO userDTO) {
+        UserDTO existingUser = userMapper.userEntityToUserDto(userRepository.findByEmail(userDTO.getEmail()).orElse(null));
+        if (existingUser == null){
+            return Optional.empty();
+        }
+        if (validatePassword(userDTO.getPassword(), existingUser.getSalt(), existingUser.getPassword())){
+            return Optional.of(existingUser);
+        } else {
+            return Optional.empty();
+        }
     }
 }
