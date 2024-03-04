@@ -31,7 +31,7 @@ public class UserController {
     private final String USER_ID = USER_PATH + "/{userId}";
 
     @GetMapping(USER_PATH)
-    public List<UserDTO> getAllUsers() {
+    public List<ResponseUserDTO> getAllUsers() {
         return userService.getAllUser();
     }
 
@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @PostMapping(USER_REGISTER)
-    public ResponseEntity<UserDTO> userRegister(@Validated @RequestBody UserDTO userDTO) {
-        UserDTO user = userService.createUser(userDTO);
+    public ResponseEntity<ResponseUserDTO> userRegister(@Validated @RequestBody UserDTO userDTO) {
+        ResponseUserDTO user = userService.createUser(userDTO);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

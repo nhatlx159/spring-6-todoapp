@@ -28,15 +28,15 @@ public class UserServiceJPA implements UserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public List<UserDTO> getAllUser() {
+    public List<ResponseUserDTO> getAllUser() {
         return userRepository.findAll()
                 .stream()
-                .map(userMapper::userEntityToUserDto)
+                .map(userMapper::userEntityToResponseUserDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
+    public ResponseUserDTO createUser(UserDTO userDTO) {
         if (userDTO.getRoleId() == null) {
             userDTO.setRoleId(1);
         }
@@ -56,7 +56,10 @@ public class UserServiceJPA implements UserService {
         String hashedPassword = hashPassword(password, salt);
         userDTO.setPassword(hashedPassword);
         userDTO.setSalt(salt);
-        return userMapper.userEntityToUserDto(userRepository.save(userMapper.userDtoToUserEntity(userDTO)));
+        ResponseUserDTO responseUserDTO = userMapper.userEntityToResponseUserDTO(userRepository.save(userMapper.userDtoToUserEntity(userDTO)));
+        responseUserDTO.setRoleId(userDTO.getRoleId());
+        responseUserDTO.setTasks(userDTO.getTasks());
+        return responseUserDTO;
     }
     private byte[] generateSalt() {
         SecureRandom random = new SecureRandom();

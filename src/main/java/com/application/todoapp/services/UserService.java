@@ -8,9 +8,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
-    List<UserDTO> getAllUser();
+    List<ResponseUserDTO> getAllUser();
 
-    UserDTO createUser(UserDTO userDTO);
+    ResponseUserDTO createUser(UserDTO userDTO);
 
     Optional<ResponseUserDTO> getUserById(UUID userId);
 
